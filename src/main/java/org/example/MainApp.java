@@ -12,14 +12,15 @@ public class MainApp {
 
     public static void main(String[] args) throws IOException, SQLException {
 
-        System.out.println("Hello");
+        System.out.println("Start");
 
-        // resources/test.txt
         String file = "src/main/resources/cars.csv";
-        testInsert(file);
+        testInsertMethod1(file);
+        testInsertMethod2(file);
+        testInsertDao(file);
     }
 
-    static void testInsert(String file) throws IOException, SQLException {
+    private static void testInsertMethod1(String file) throws SQLException, IOException {
         //create connection for a server installed in localhost, with a user "root" with no password
 
         String url = "jdbc:postgresql://localhost/sampledb";
@@ -30,7 +31,6 @@ public class MainApp {
                 + "car(car_name) "
                 + "VALUES(?)";
 
-        /*
         try( Connection conn = DriverManager.getConnection(url, user, password) ) {
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -43,8 +43,17 @@ public class MainApp {
                 }
             }
         }
+    }
+    private static void testInsertMethod2(String file) throws IOException, SQLException {
+        //create connection for a server installed in localhost, with a user "root" with no password
 
-         */
+        String url = "jdbc:postgresql://localhost/sampledb";
+        String user = "violeta.domnitanu";
+        String password = "vio";
+
+        String sql = "INSERT INTO "
+                + "car(car_name) "
+                + "VALUES(?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -61,11 +70,10 @@ public class MainApp {
                 });
             }
         }
-
-
-        /*
+    }
+    private static void testInsertDao(String file) throws IOException {
         Dao<Car> carDao = new CarDao();
-        Files.readAllLines(Paths.get(file)).stream().forEach(e -> {
+        Files.readAllLines(Paths.get(file)).parallelStream().forEach(e -> {
             String[] values = e.split(";");
             System.out.println(values[0]);
             try {
@@ -74,6 +82,7 @@ public class MainApp {
                 throwables.printStackTrace();
             }
         });
-        */
     }
+
+
 }
