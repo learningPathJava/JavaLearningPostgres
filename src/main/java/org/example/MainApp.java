@@ -22,7 +22,6 @@ public class MainApp {
     static void testInsert(String file) throws IOException, SQLException {
         //create connection for a server installed in localhost, with a user "root" with no password
 
-        /*
         String url = "jdbc:postgresql://localhost/sampledb";
         String user = "violeta.domnitanu";
         String password = "vio";
@@ -30,8 +29,6 @@ public class MainApp {
         String sql = "INSERT INTO "
                 + "car(car_name) "
                 + "VALUES(?)";
-
-         */
 
         /*
         try( Connection conn = DriverManager.getConnection(url, user, password) ) {
@@ -49,7 +46,6 @@ public class MainApp {
 
          */
 
-        /*
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -65,9 +61,9 @@ public class MainApp {
                 });
             }
         }
-         */
 
 
+        /*
         Dao<Car> carDao = new CarDao();
         Files.readAllLines(Paths.get(file)).stream().forEach(e -> {
             String[] values = e.split(";");
@@ -78,5 +74,6 @@ public class MainApp {
                 throwables.printStackTrace();
             }
         });
+        */
     }
 }
