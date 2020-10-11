@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class MainTest {
+public class MainTestTwo {
 
     public static void main(String[] args) throws IOException {
         String file = "./resources/cars.csv";

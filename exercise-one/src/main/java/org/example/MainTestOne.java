@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainApp {
+public class MainTestOne {
 
     static PostgreSQLDataSources app = new PostgreSQLDataSources();
     static Connection conn = null;

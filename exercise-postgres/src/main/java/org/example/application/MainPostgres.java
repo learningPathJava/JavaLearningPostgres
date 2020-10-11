@@ -8,7 +8,7 @@ import org.example.service.Service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Main {
+public class MainPostgres {
     public static void main(String[] args) throws SQLException {
 
         PostgreSQLDataSources app = new PostgreSQLDataSources();;
