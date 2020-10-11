@@ -21,7 +21,7 @@ public class CarDaoImpl implements Dao<Car, Connection> {
     public List<Car> getAll(Connection conn) throws SQLException {
         String sql = "SELECT * FROM car";
         try (Statement stmt = conn.createStatement()) {
-            List<Car> carList= new ArrayList();
+            List<Car> carList = new ArrayList<>();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 carList.add(new Car(rs.getInt(1), rs.getString(2)));
