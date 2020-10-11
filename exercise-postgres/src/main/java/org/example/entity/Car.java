@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.apache.beam.sdk.schemas.JavaFieldSchema;
 import org.apache.beam.sdk.schemas.annotations.DefaultSchema;
 
+import java.io.Serializable;
+
 /**
  * container for car data
  */
@@ -13,7 +15,7 @@ import org.apache.beam.sdk.schemas.annotations.DefaultSchema;
 @NoArgsConstructor
 @AllArgsConstructor
 @DefaultSchema(JavaFieldSchema.class)
-public class Car implements java.io.Serializable {
+public class Car implements Serializable {
     private Integer id;
     private String carName;
 }
