@@ -7,14 +7,20 @@ import org.example.service.Service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Logger;
 
 public class MainPostgres {
+
+    private static final Logger __logger = Logger.getLogger("MainPostgres");
+
     public static void main(String[] args) throws SQLException {
 
-        PostgreSQLDataSources app = new PostgreSQLDataSources();;
+        PostgreSQLDataSources app = new PostgreSQLDataSources();
         Connection conn = app.connect();
 
         Service<Car, Connection> carService = new CarServiceImpl();
-        carService.getAll(conn).forEach(System.out::println);
+        List<Car> carList = carService.getAll(conn);
+        __logger.info(carList::toString);
     }
 }
