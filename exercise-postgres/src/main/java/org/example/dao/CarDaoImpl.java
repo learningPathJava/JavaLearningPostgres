@@ -2,10 +2,7 @@ package org.example.dao;
 
 import org.example.entity.Car;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +10,7 @@ import java.util.Optional;
 public class CarDaoImpl implements Dao<Car, Connection> {
 
     @Override
-    public Optional<Car> get(int id) {
+    public Optional<Car> get(Connection conn, int id) {
         return Optional.empty();
     }
 
@@ -31,17 +28,25 @@ public class CarDaoImpl implements Dao<Car, Connection> {
     }
 
     @Override
-    public Optional<Integer> insert(List<Car> t) {
+    public Optional<Integer> insert(Connection conn, List<Car> carList) throws SQLException {
+        String insertCarSQL = "INSERT INTO " + "car(car_name) " + "VALUES(?)";
+        try (PreparedStatement stmt = conn.prepareStatement(insertCarSQL)) {
+            for ( Car car : carList) {
+                stmt.setString(1, car.getCarName());
+                stmt.addBatch();
+            }
+            stmt.executeBatch();
+        }
         return Optional.empty();
     }
 
     @Override
-    public boolean update(List<Car> t) {
+    public boolean update(Connection conn, List<Car> t) {
         return false;
     }
 
     @Override
-    public boolean delete(List<Car> t) {
+    public boolean delete(Connection conn, List<Car> t) {
         return false;
     }
 }

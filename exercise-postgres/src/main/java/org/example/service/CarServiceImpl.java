@@ -7,6 +7,7 @@ import org.example.entity.Car;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class CarServiceImpl implements Service<Car, Connection> {
 
@@ -15,5 +16,10 @@ public class CarServiceImpl implements Service<Car, Connection> {
     @Override
     public List<Car> getAll(Connection conn) throws SQLException {
         return car.getAll(conn);
+    }
+
+    @Override
+    public Optional<Integer> insert(Connection conn, List<Car> carList) throws SQLException {
+        return car.insert(conn, carList);
     }
 }
