@@ -10,18 +10,5 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>exercise-postgres</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugin-tools</groupId>
-            <artifactId>maven-plugin-annotations</artifactId>
-            <version>3.5</version>
-        </dependency>
-    </dependencies>
-
 
 </project>

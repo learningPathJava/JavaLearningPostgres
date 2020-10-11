@@ -30,12 +30,17 @@ public class CarDaoImpl implements Dao<Car, Connection> {
     @Override
     public Optional<Integer> insert(Connection conn, List<Car> carList) throws SQLException {
         String insertCarSQL = "INSERT INTO " + "car(car_name) " + "VALUES(?)";
+
+        conn.setAutoCommit(false);
         try (PreparedStatement stmt = conn.prepareStatement(insertCarSQL)) {
             for ( Car car : carList) {
                 stmt.setString(1, car.getCarName());
                 stmt.addBatch();
             }
+
+            // Execute Batch
             stmt.executeBatch();
+            conn.commit();
         }
         return Optional.empty();
     }
