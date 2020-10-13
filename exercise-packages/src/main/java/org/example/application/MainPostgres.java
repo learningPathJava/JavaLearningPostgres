@@ -1,6 +1,6 @@
 package org.example.application;
 
-import org.example.PostgreSQLDataSources;
+import org.example.infrastructure.PostgreSQLDataSources;
 import org.example.entity.Car;
 import org.example.service.CarServiceImpl;
 import org.example.service.Service;
@@ -20,8 +20,7 @@ public class MainPostgres {
 
     public static void main(String[] args) throws SQLException, IOException {
 
-        PostgreSQLDataSources app = new PostgreSQLDataSources();
-        Connection conn = app.connect();
+        Connection conn = PostgreSQLDataSources.connect();
 
         Service<Car, Connection> carService = new CarServiceImpl();
         List<Car> carList = null;

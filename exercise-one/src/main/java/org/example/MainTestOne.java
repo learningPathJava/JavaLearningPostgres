@@ -1,9 +1,5 @@
 package org.example;
 
-import org.apache.beam.sdk.Pipeline;
-import org.apache.beam.sdk.io.TextIO;
-import org.apache.beam.sdk.transforms.Regex;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,14 +22,6 @@ public class MainTestOne {
         testInsertMethod2(file);
         testInsertDao(file);
         testInsertAllDao(file);
-
-        // Using Apache Beam
-        /*
-        PipelineOptions options = PipelineOptionsFactory.fromArgs(args).create();
-        Pipeline pipeline       = Pipeline.create(options);
-        testInsertApacheBeam(pipeline, file);
-
-         */
     }
 
     private static void testInsertMethod1(String file) throws SQLException, IOException {
@@ -97,15 +85,6 @@ public class MainTestOne {
         allCars.forEach(System.out::println);
         Dao<Car> carDao = new CarDao(conn);
         carDao.saveAll(allCars);
-    }
-
-    private static void testInsertApacheBeam(Pipeline pipeline, String file) {
-        pipeline
-                .apply("Read CSV file", TextIO.read().from(file))
-                .apply(Regex.split(";"))
-                .apply(TextIO.write().to("src/main/resources/output.txt"));
-
-        pipeline.run().waitUntilFinish();
     }
 
 }

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.infrastructure;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,19 +11,15 @@ public class PostgreSQLDataSources {
      *
      * @return a Connection object
      */
-    public Connection connect() {
+    public static synchronized Connection connect() {
         Connection conn = null;
         try {
             String url = "jdbc:postgresql://localhost/sampledb";
             String user = "violeta.domnitanu";
             String password = "vio";
-            conn = DriverManager.getConnection(url, user, password);
 
-            if (conn != null) {
-                System.out.println("Connected to the PostgreSQL server successfully.");
-            } else {
-                System.out.println("Failed to make connection!");
-            }
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the PostgreSQL server successfully./n" + conn);
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -32,9 +28,6 @@ public class PostgreSQLDataSources {
         return conn;
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         PostgreSQLDataSources app = new PostgreSQLDataSources();
         app.connect();
