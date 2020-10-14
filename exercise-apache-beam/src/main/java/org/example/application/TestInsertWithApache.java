@@ -45,8 +45,8 @@ public class TestInsertWithApache {
                         .withDataSourceConfiguration(JdbcIO.DataSourceConfiguration
                                 // Data Source Configuration for PostgreSQL
                                 .create("org.postgresql.Driver", "jdbc:postgresql://localhost/sampledb")
-                                .withUsername("violeta.domnitanu")
-                                .withPassword("vio"))
+                                .withUsername("***")
+                                .withPassword("***"))
                         // Statement
                         .withStatement("insert into car " +
                                 "(car_name, car_mpg, car_cylinders, car_displacement, car_horsepower, car_weight, car_acceleration, car_model, car_origin) " +
